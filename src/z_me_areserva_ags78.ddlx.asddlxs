@@ -1,0 +1,90 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+@UI: {
+headerInfo: {
+typeName: 'Reserva',
+typeNamePlural: 'Reservas',
+title: {
+type: #STANDARD,
+value: 'ReservaID' }
+}
+}
+annotate view Z_C_ARESERVA_AGS78 with
+{
+  @UI.facet: [{ id: 'Reserva',
+  purpose: #STANDARD,
+  type: #IDENTIFICATION_REFERENCE ,
+  label: 'Reserva',
+  position: 10 },
+  { id: 'ReservaSupId',
+  purpose: #STANDARD,
+  type: #LINEITEM_REFERENCE,
+  label: 'Suplemento Reserva',
+  position: 20, 
+  targetElement: '_SuplementoReserva'
+  }]
+  @Search.defaultSearchElement: true
+  ViajeId;
+  @UI: { lineItem: [ { position: 20, importance:
+  #HIGH } ],
+  identification: [ { position: 20 } ] }
+  @Search.defaultSearchElement: true
+  ReservaId;
+  @UI: { lineItem: [ { position: 30, importance:
+  #HIGH } ],
+  identification: [ { position: 30 } ] }
+  FechaReserva;
+  @UI: { lineItem: [ { position: 40, importance:
+  #HIGH } ],
+  identification: [ { position: 40 } ] }
+  @Consumption.valueHelpDefinition: [{entity: {name:
+  '/DMO/I_Customer', element: 'CustomerID' }}]
+  @Search.defaultSearchElement: true
+  ClienteId;
+  @UI: { lineItem: [ { position: 50, importance:
+  #HIGH } ],
+  identification: [ { position: 50 } ] }
+  @Consumption.valueHelpDefinition: [{entity: {name:
+  '/DMO/I_Carrier', element: 'AirlineID' }}]
+  TransporteId;
+  @UI: { lineItem: [ { position: 60, importance:
+  #HIGH } ],
+  identification: [ { position: 60 } ] }
+  @Consumption.valueHelpDefinition: [ {entity:
+  {name: '/DMO/I_Flight', element: 'ConnectionID'},
+  additionalBinding: [ { localElement: 'FechaVuelo',
+  element: 'FechaVuelo'},
+  { localElement: 'TransporteId', element:
+  'TransporteId'},
+  { localElement: 'PrecioVuelo', element: 'PrecioVuelo'},
+  { localElement: 'Moneda', element:
+  'Moneda' } ] } ]
+  ConexionId;
+  @UI: { lineItem: [ { position: 70, importance:
+  #HIGH } ],
+  identification: [ { position: 70 } ] }
+  @Consumption.valueHelpDefinition: [ {entity:
+  {name: '/DMO/I_Flight', element: 'FlightDate' },
+  additionalBinding: [ { localElement:
+  'ConexionId', element: 'ConexionId'},
+  { localElement: 'TransporteId', element:
+  'TransporteId'},
+  { localElement: 'PrecioVuelo', element: 'PrecioVuelo' },
+  { localElement: 'Moneda', element:
+  'Moneda' }]}]
+  FechaVuelo;
+  @UI: { lineItem: [ { position: 80, importance:
+  #HIGH } ],
+  identification: [ { position: 80 } ] }
+  PrecioVuelo;
+  @Consumption.valueHelpDefinition: [{entity: {name:
+  'I_Currency', element: 'Currency' }}]
+  Moneda;
+  @UI: { lineItem: [ { position: 90, importance:
+  #HIGH, label: 'Status' } ],
+  identification: [ { position: 90, label: 'Status
+[N(New)| X(Canceled)| B(Booked)]' } ] }
+  EstatusReserva;
+  @UI.hidden: true
+  ModificadoEl;
+}
