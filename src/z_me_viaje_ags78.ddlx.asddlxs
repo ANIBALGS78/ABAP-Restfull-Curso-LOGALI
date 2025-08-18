@@ -11,7 +11,7 @@ value: 'ViajeId' }
 }
 annotate view Z_C_VIAJE_AGS78 with
 {
-  @UI.facet: [{ id: 'Viaje',
+  @UI.facet: [{ id: 'ViajeID',
   purpose: #STANDARD,
   type: #IDENTIFICATION_REFERENCE ,
   label: 'Viaje',
@@ -57,6 +57,7 @@ annotate view Z_C_VIAJE_AGS78 with
   identification: [ { position: 41 } ] }
   FechaHasta;
   @UI: {
+  lineItem: [ { position: 42, importance: #MEDIUM } ],
   identification: [ { position: 42 } ] }
   TarifaReserva;
   @UI: {
