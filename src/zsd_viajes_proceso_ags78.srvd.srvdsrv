@@ -1,0 +1,15 @@
+@EndUserText.label: 'Service Def. Viajes - Proceso'
+define service ZSD_VIAJES_PROCESO_AGS78 {
+  expose Z_C_VIAJE_AGS78       as Viajes;
+  expose Z_C_RESERVA_AGS78     as Reserva;
+  expose Z_C_RESERVASUPL_AGS78 as suplemento_reserva;
+  expose /DMO/I_Supplement     as suplemento;
+  expose /DMO/I_SupplementText as texto_suplemento;
+  expose /DMO/I_Customer       as Cliente;
+  expose /DMO/I_Agency         as Agencia;
+  expose /DMO/I_Carrier        as Aerolinea;
+  expose /DMO/I_Connection     as Conexion_vuelo;
+  expose /DMO/I_Flight         as Vuelo;
+  expose I_Currency            as Moneda;
+  expose I_Country             as Ciudad;
+}

@@ -1,0 +1,8 @@
+@EndUserText.label: 'Service Def. Viajes - Aprobador'
+define service ZSD_APRO_VIAJES_AGS78 {
+  expose Z_C_AVIAJE_AGS78;
+  expose Z_C_ARESERVA_AGS78;
+  expose /DMO/I_Customer    as Pasajero;
+  expose /DMO/I_Agency      as Agencia;
+  expose I_Currency         as Moneda;
+}
