@@ -1,0 +1,36 @@
+projection;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for Z_C_VIAJE_AGS78 alias ProcesadorViajes
+use etag
+{
+
+  field ( readonly ) PrecioTotal;
+  use create;
+  use update;
+  use delete;
+
+  use action aceptar_viaje;
+  use action rechazar_viaje;
+  use action crear_viaje_con_plantilla;
+
+  use association _Reserva { create; }
+}
+
+define behavior for Z_C_RESERVA_AGS78 alias ProcesadorReserva
+{
+  use update;
+//  use delete;
+
+  use association _Viaje;
+  use association _SuplementoReserva { create; }
+}
+
+define behavior for Z_C_RESERVASUPL_AGS78 alias ProcesaroSuplemReserva
+{
+  use update;
+//  use delete;
+
+  use association _Viaje;
+  use association _Reserva;
+}

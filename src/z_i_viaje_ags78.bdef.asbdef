@@ -1,0 +1,102 @@
+managed; //implementation in class zbp_i_viaje_ags78 unique;
+//strict ( 2 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for Z_I_VIAJE_AGS78 alias Viaje
+implementation in class zcl_bp_viaje unique
+persistent table ztb_viajes_ags78
+lock master
+authorization master ( instance )
+etag master ModificadoEl
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) ViajeId, CreadoEl, CreadoPor, ModificadoEl, ModificadoPor;
+  field ( mandatory ) AgenciaId, EstatusGeneral, TarifaReserva, Moneda;
+  field ( features : instance ) ViajeId;
+
+  validation validarcliente on save { field ClienteId; }
+  validation validarfecha on save { field FechaDesde, FechaHasta; }
+  validation validarestatus on save { field EstatusGeneral; }
+
+  determination calculoTotalPrecioVuelo on modify { field PrecioTotal, Moneda; }
+
+  action ( features : instance ) aceptar_viaje result [1] $self;
+  action ( features : instance ) rechazar_viaje result [1] $self;
+  action ( features : instance ) crear_viaje_con_plantilla result [1] $self;
+
+  mapping for ztb_viajes_ags78
+    {
+      ViajeId        = viaje_id;
+      AgenciaId      = agencia_id;
+      ClienteId      = cliente_id;
+      FechaDesde     = fecha_desde;
+      Fechahasta     = fecha_hasta;
+      TarifaReserva  = tarifa_reserva;
+      PrecioTotal    = precio_total;
+      moneda         = moneda;
+      Descripcion    = descripcion;
+      EstatusGeneral = estatus_general;
+      CreadoPor      = creado_por;
+      CreadoEl       = creado_el;
+      ModificadoEl   = modificado_el;
+      ModificadoPor  = modificado_por;
+    }
+
+  association _Reserva { create; }
+}
+
+define behavior for Z_I_RESERVA_AGS78 alias Reserva
+implementation in class zcl_bp_reserva unique
+persistent table ztb_reserva_ags
+lock dependent by _Viaje
+authorization dependent by _Viaje
+etag master ModificadoEl
+{
+  update;
+  delete;
+  field ( readonly ) ViajeId, ReservaId;
+  field ( mandatory ) TransporteId, ConexionId, FechaVuelo, EstatusReserva;
+
+  validation validarestatus on save { field EstatusReserva; }
+  determination calculoTotalPrecioReserva on modify { field PrecioVuelo, Moneda; }
+
+  mapping for ztb_reserva_ags
+    {
+      ViajeId        = viaje_id;
+      ReservaId      = reserva_id;
+      FechaReserva   = fecha_reserva;
+      ClienteId      = cliente_id;
+      TransporteId   = transporte_id;
+      ConexionId     = conexion_id;
+      FechaVuelo     = fecha_vuelo;
+      PrecioVuelo    = precio_vuelo;
+      Moneda         = moneda;
+      EstatusReserva = estatus_reserva;
+      ModificadoEl   = modificado_el;
+    }
+
+  association _Viaje;
+  association _SuplementoReserva { create; }
+}
+
+define behavior for Z_I_RESERVASUPL_AGS78 alias Suplemento_Reserva
+//persistent table ztb_sup_rese_ags
+implementation in class zcl_bp_suplreserva unique
+with unmanaged save
+lock dependent by _Viaje
+authorization dependent by _Viaje
+etag master ModificadoEl
+{
+  update;
+  delete;
+  field ( readonly ) ViajeId, ReservaId, ReservaSupId;
+  field ( mandatory ) SuplementoId, Precio;
+
+  determination calculoTotalPrecioReservaSupl on modify { field Precio, Moneda; }
+
+  mapping for ztb_log_ags78 corresponding;
+
+  association _Viaje;
+  association _Reserva;
+}
