@@ -39,9 +39,9 @@ annotate view Z_C_VIAJE_AGS78 with
   {name: '/DMO/I_Agency', element: 'AgencyID' } }]
   AgenciaId;
   @UI: {
-  lineItem: [ { position: 30, importance: #HIGH } ],
-  identification: [ { position: 30 } ],
-  selectionField: [ { position: 30 } ] }
+  lineItem: [ { position: 21, importance: #HIGH } ],
+  identification: [ { position: 21 } ],
+  selectionField: [ { position: 21 } ] }
   @Consumption.valueHelpDefinition: [{ entity :
   {name: '/DMO/I_Customer', element: 'CustomerID' } }]
   @Search.defaultSearchElement: true
@@ -74,12 +74,15 @@ annotate view Z_C_VIAJE_AGS78 with
   @UI: {
   lineItem: [ { position: 50, importance: #HIGH },
   { type: #FOR_ACTION, dataAction:
-  'createTravelByTemplate', label: 'Create Travel by
-Template' } ],
+  'crear_viaje_con_plantilla', label: 'Crear con Plantilla' } ],
   identification: [ { position: 45,
-  label: 'Status [O(Open)|A(Accepted)|X(Canceled)]' }
+  label: 'Status O(Abierto)|A(Aceptado)|X(Cancelado)' }
   ] }
   EstatusGeneral;
-  @UI.hidden: true
+  //@UI.hidden: true
+  @UI: {
+    lineItem: [ { position: 60, importance: #HIGH }
+    ],
+    identification: [ { position: 60, label: '[Modificado El' } ] }
   ModificadoEl;
 }

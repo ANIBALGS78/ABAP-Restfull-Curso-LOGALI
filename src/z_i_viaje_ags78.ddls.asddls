@@ -3,6 +3,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Interface - Viajes'
 @Metadata.ignorePropagatedAnnotations: true
+@Metadata.allowExtensions: true
 define root view Z_I_VIAJE_AGS78
   as select from ztb_viajes_ags78 as Viaje
   composition [0..*] of Z_I_RESERVA_AGS78 as _Reserva

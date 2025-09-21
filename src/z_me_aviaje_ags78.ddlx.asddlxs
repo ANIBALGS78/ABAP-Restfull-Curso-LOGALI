@@ -72,12 +72,10 @@ annotate view Z_C_AVIAJE_AGS78 with
   Descripcion;
   @UI: {
   lineItem: [ { position: 50, importance: #HIGH },
-  { type: #FOR_ACTION, dataAction:
-  'createTravelByTemplate', label: 'Create Travel by
-Template' } ],
-  identification: [ { position: 45,
-  label: 'Status [O(Open)|A(Accepted)|X(Canceled)]' }
-  ] }
+  { type: #FOR_ACTION, dataAction: 'aceptar_viaje', label: 'Aceptar Viaje' },
+  { type: #FOR_ACTION, dataAction: 'rechazar_viaje', label: 'Rechazar Viaje' } ],
+  selectionField: [ { position: 40 } ] }
+  @EndUserText.label: 'Overall Status'
   EstatusGeneral;
   @UI.hidden: true
   ModificadoEl;

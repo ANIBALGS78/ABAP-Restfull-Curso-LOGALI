@@ -4,20 +4,23 @@ managed; //implementation in class zbp_i_viaje_ags78 unique;
 define behavior for Z_I_VIAJE_AGS78 alias Viaje
 implementation in class zcl_bp_viaje unique
 persistent table ztb_viajes_ags78
+with additional save
 lock master
 authorization master ( instance )
 etag master ModificadoEl
 {
+
+  field ( readonly ) ModificadoEl, ModificadoPor, CreadoEl, CreadoPor;
+  field ( mandatory: create ) ViajeId, AgenciaId, EstatusGeneral, TarifaReserva, Moneda;
+  field ( features : instance ) viajeid, EstatusGeneral;
+
   create ( authorization : global );
   update;
   delete;
-  field ( readonly ) ViajeId, CreadoEl, CreadoPor, ModificadoEl, ModificadoPor;
-  field ( mandatory ) AgenciaId, EstatusGeneral, TarifaReserva, Moneda;
-  field ( features : instance ) ViajeId;
 
-  validation validarcliente on save { field ClienteId; }
-  validation validarfecha on save { field FechaDesde, FechaHasta; }
-  validation validarestatus on save { field EstatusGeneral; }
+  validation validarcliente on save { create; field ClienteId; }
+  validation validarfecha   on save { create; field FechaDesde, FechaHasta; }
+  validation validarestatus on save { create; field EstatusGeneral; }
 
   determination calculoTotalPrecioVuelo on modify { field PrecioTotal, Moneda; }
 
@@ -56,9 +59,9 @@ etag master ModificadoEl
   update;
   delete;
   field ( readonly ) ViajeId, ReservaId;
-  field ( mandatory ) TransporteId, ConexionId, FechaVuelo, EstatusReserva;
+  field ( mandatory : create ) TransporteId, ConexionId, FechaVuelo, EstatusReserva;
 
-  validation validarestatus on save { field EstatusReserva; }
+  validation validarestatus on save { create; field EstatusReserva; }
   determination calculoTotalPrecioReserva on modify { field PrecioVuelo, Moneda; }
 
   mapping for ztb_reserva_ags
@@ -91,7 +94,7 @@ etag master ModificadoEl
   update;
   delete;
   field ( readonly ) ViajeId, ReservaId, ReservaSupId;
-  field ( mandatory ) SuplementoId, Precio;
+  field ( mandatory : create ) SuplementoId, Precio;
 
   determination calculoTotalPrecioReservaSupl on modify { field Precio, Moneda; }
 
