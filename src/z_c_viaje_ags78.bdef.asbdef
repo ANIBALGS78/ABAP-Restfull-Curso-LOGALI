@@ -20,7 +20,7 @@ use etag
 define behavior for Z_C_RESERVA_AGS78 alias ProcesadorReserva
 {
   use update;
-//  use delete;
+  use delete;
 
   use association _Viaje;
   use association _SuplementoReserva { create; }
@@ -29,7 +29,7 @@ define behavior for Z_C_RESERVA_AGS78 alias ProcesadorReserva
 define behavior for Z_C_RESERVASUPL_AGS78 alias ProcesaroSuplemReserva
 {
   use update;
-//  use delete;
+  use delete;
 
   use association _Viaje;
   use association _Reserva;

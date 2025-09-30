@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Def. Vuelos AGS78'
+define service ZSD_FLIGTH_AGS78 {
+  expose ZI_FLIGHT_AGS78 as Viajes;
+}

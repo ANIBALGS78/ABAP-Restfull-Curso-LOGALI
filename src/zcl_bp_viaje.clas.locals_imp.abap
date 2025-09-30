@@ -206,12 +206,6 @@ CLASS lhc_Viaje IMPLEMENTATION.
 
   METHOD calculoTotalPrecioVuelo.
 
-    IF keys IS NOT INITIAL.
-      zcl_viaje_auxiliar_ags78=>calculate_price(
-      it_travel_id = VALUE #( FOR GROUPS <booking> OF booking_key IN keys
-      GROUP BY booking_key-ViajeId WITHOUT MEMBERS ( <booking> ) ) ).
-    ENDIF.
-
   ENDMETHOD.
 
   METHOD validarcliente.

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <AREAT>Actualización por UNMANAGED Suplemento</AREAT>
+   <INCLUDES>
+    <SOBJ_NAME>LZGF_NO_MANEJ_SUPPL_AGS78TOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZGF_NO_MANEJ_SUPPL_AGS78</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>ZMF_SUPLEMENTOS_AGS78</FUNCNAME>
+     <SHORT_TEXT>Actualizar Suplementos</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>VALUES</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZTT_SUPPL_AGS78</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>OPERATION</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZDE_TIPO_OPERACION</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>EV_UPDATED</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZDE_EXITO</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>VALUES</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>OPERATION</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_UPDATED</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

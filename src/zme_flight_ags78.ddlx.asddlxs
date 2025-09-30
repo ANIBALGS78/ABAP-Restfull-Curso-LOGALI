@@ -1,0 +1,38 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: { typeName: 'Flight',
+                  typeNamePlural: 'Flights',
+                  title: { type: #STANDARD, value: 'carrier_id' } }
+
+annotate entity ZC_FLIGHT_AGS78
+    with 
+{
+  @UI.facet: [ { id: 'idIdentification', type: #IDENTIFICATION_REFERENCE, label: 'Flight Details', position: 10 } ]
+  @UI.identification: [ { position: 10, label: 'Carrier ID' } ]
+  @UI.lineItem: [ { type: #FOR_ACTION,
+                    dataAction: 'AlterPriceWithPrice2',
+                    label: 'Alter Price with Price2 Data',
+                    position: 5 },
+                  { position: 10, importance: #HIGH, label: 'Carrier ID' } ]
+  carrier_id;
+
+  @UI.identification: [ { position: 20, label: 'Connection ID' } ]
+  @UI.lineItem: [ { position: 20, importance: #HIGH, label: 'Connection ID' } ]
+  connection_id;
+
+  @UI.identification: [ { position: 30, label: 'Flight Date' } ]
+  @UI.lineItem: [ { position: 30, importance: #HIGH, label: 'Flight Date' } ]
+  flight_date;
+
+  @UI.identification: [ { position: 40, label: 'Price' } ]
+  @UI.lineItem: [ { position: 40, importance: #HIGH, label: 'Price' } ]
+  price;
+
+  @UI.identification: [ { position: 50, label: 'Price 2' } ]
+  @UI.lineItem: [ { position: 50, importance: #MEDIUM, label: 'Price 2' } ]
+  price2;
+
+  @UI.lineItem: [ { position: 60, importance: #MEDIUM, label: 'Currency' } ]
+  currency_code;
+
+    
+}

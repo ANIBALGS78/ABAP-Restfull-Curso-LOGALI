@@ -12,14 +12,19 @@ ENDCLASS.
 CLASS lhc_Reserva IMPLEMENTATION.
 
   METHOD calculoTotalPrecioReserva.
+    IF keys IS NOT INITIAL.
+      zcl_viaje_auxiliar_ags78=>calculate_price(
+      it_travel_id = VALUE #( FOR GROUPS <booking> OF booking_key IN keys
+     GROUP BY booking_key-ViajeId WITHOUT MEMBERS ( <booking> ) ) ).
+    ENDIF.
   ENDMETHOD.
 
   METHOD validarestatus.
 
-  READ ENTITY z_i_viaje_ags78\\Reserva
-  FIELDS ( EstatusReserva )
-  WITH VALUE #( FOR <root_key> IN keys ( %key = <root_key> ) )
-  RESULT DATA(lt_Reserva_result).
+    READ ENTITY z_i_viaje_ags78\\Reserva
+    FIELDS ( EstatusReserva )
+    WITH VALUE #( FOR <root_key> IN keys ( %key = <root_key> ) )
+    RESULT DATA(lt_Reserva_result).
 
     LOOP AT lt_Reserva_result INTO DATA(ls_Reserva_result).
       CASE ls_Reserva_result-EstatusReserva.

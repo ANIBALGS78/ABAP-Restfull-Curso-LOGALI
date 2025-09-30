@@ -60,9 +60,7 @@ annotate view Z_C_VIAJE_AGS78 with
   lineItem: [ { position: 42, importance: #MEDIUM } ],
   identification: [ { position: 42 } ] }
   TarifaReserva;
-  @UI: {
-  lineItem: [ { position: 43, importance: #MEDIUM }
-  ],
+  @UI: { lineItem: [ { position: 43, importance: #MEDIUM } ],
   identification: [ { position: 43, label: 'Precio Total' } ] }
   PrecioTotal;
   @Consumption.valueHelpDefinition: [{entity: {name:
@@ -71,18 +69,17 @@ annotate view Z_C_VIAJE_AGS78 with
   @UI: {
   identification:[ { position: 46 } ] }
   Descripcion;
-  @UI: {
-  lineItem: [ { position: 50, importance: #HIGH },
-  { type: #FOR_ACTION, dataAction:
-  'crear_viaje_con_plantilla', label: 'Crear con Plantilla' } ],
-  identification: [ { position: 45,
-  label: 'Status O(Abierto)|A(Aceptado)|X(Cancelado)' }
-  ] }
+  @UI: { lineItem: [ { position: 50, importance: #HIGH },
+                     { type: #FOR_ACTION, dataAction:
+                     'crear_viaje_con_plantilla', label: 'Crear con Plantilla' } ] }
+   //identification: [ { position: 45, label: 'Status O(Abierto)|A(Aceptado)|X(Cancelado)' } ] } 
   EstatusGeneral;
-  //@UI.hidden: true
+  @UI.hidden: true
   @UI: {
-    lineItem: [ { position: 60, importance: #HIGH }
-    ],
+    lineItem: [ { position: 60, importance: #HIGH } ],
     identification: [ { position: 60, label: '[Modificado El' } ] }
   ModificadoEl;
+  @UI: {
+  lineItem: [ { position: 70, importance: #HIGH } ] }
+  descuento;
 }

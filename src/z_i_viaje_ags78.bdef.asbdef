@@ -93,6 +93,7 @@ etag master ModificadoEl
 {
   update;
   delete;
+
   field ( readonly ) ViajeId, ReservaId, ReservaSupId;
   field ( mandatory : create ) SuplementoId, Precio;
 
